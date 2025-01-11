@@ -5,8 +5,7 @@ import com.codeborne.selenide.Configuration;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selectors.byTagAndText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class LoginTest {
 
