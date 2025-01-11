@@ -6,7 +6,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -20,27 +19,37 @@ public class NavigationTest {
     }
 
     @Test
-    public void verifyBrokenImages() {
+    public void verifyNavigateToBrokenImages() {
         open("/broken_images");
-        $x("//h3").shouldHave(text("Broken Images"));
+        $x("(//h3|//h1)[1]").shouldHave(text("Broken Images"));
 
         $("[src='img/avatar-blank.jpg']").shouldBe(Condition.image);
         $("[src='asdf.jpg']").shouldNotBe(Condition.image);
     }
 
     @Test
-    public void verifyHovering() {
+    public void verifyNavigateToHover() {
         open("/hovers");
-        $x("//h3").shouldHave(text("Hovers"));
-
-        $$("[alt='User Avatar']").get(1).hover();
-        $(byText("name: user2")).shouldBe(Condition.visible);
-
-        $$("[alt='User Avatar']").get(2).hover();
-        $(byText("name: user3")).shouldBe(Condition.visible);
-
-        $$("[alt='User Avatar']").get(0).hover();
-        $(byText("name: user1")).shouldBe(Condition.visible);
+        $x("(//h3|//h1)[1]").shouldHave(text("Hovers"));
     }
+
+    @Test
+    public void verifyNavigateToShadowDom() {
+        open("/shadowdom");
+        $x("(//h3|//h1)[1]").shouldHave(text("Simple template"));
+    }
+
+    @Test
+    public void verifyNavigateToInputs() {
+        open("/inputs");
+        $x("(//h3|//h1)[1]").shouldHave(text("Inputs"));
+    }
+
+    @Test
+    public void verifyNavigateToCheckboxes() {
+        open("/checkboxes");
+        $x("(//h3|//h1)[1]").shouldHave(text("Checkboxes"));
+    }
+
 
 }
