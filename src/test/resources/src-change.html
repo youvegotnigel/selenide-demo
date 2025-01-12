@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Image Source</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin-top: 50px;
+        }
+        img {
+          width: 300px;
+          height: auto;
+          margin: 20px 0;
+          border: 2px solid #ccc;
+          border-radius: 8px;
+        }
+        button {
+          padding: 10px 20px;
+          font-size: 16px;
+          background-color: #007BFF;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        button:hover {
+          background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Change Image Source</h1>
+<img id="image" src="https://via.placeholder.com/300?text=Original" alt="Original Image">
+<br>
+<button onclick="changeImage()">Change Image After 5 Seconds</button>
+
+<script>
+    function changeImage() {
+      setTimeout(() => {
+        document.getElementById('image').src = "https://via.placeholder.com/300?text=Changed";
+      }, 5000);
+    }
+</script>
+</body>
+</html>
