@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -23,7 +23,7 @@ public class AttributeChangeTest {
     private static final String SRC_ATTRIBUTE_VALUE_AFTER = "https://via.placeholder.com/300?text=Changed";
 
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp() {
 
         String filePath = "file:" + System.getProperty("user.dir") + "/src/test/resources/src-change.html";
@@ -53,7 +53,7 @@ public class AttributeChangeTest {
         Assert.assertEquals($(IMAGE).getDomAttribute("src"), SRC_ATTRIBUTE_VALUE_BEFORE);
 
         $(BUTTON).click();
-        waitForAttributeToChange(IMAGE, "src", "https://via.placeholder.com/300?text=Original");
+        waitForAttributeToChange(IMAGE, "src", SRC_ATTRIBUTE_VALUE_BEFORE);
 
         Assert.assertEquals($(IMAGE).getDomAttribute("src"), SRC_ATTRIBUTE_VALUE_AFTER);
         System.out.println("SRC Attribute Value = " + $(IMAGE).getDomAttribute("src"));
