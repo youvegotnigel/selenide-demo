@@ -61,7 +61,7 @@ public class AttributeChangeTest {
 
     public void waitForAttributeToChange(By by, String attribute, String currentAttributeValue) {
 
-        WebDriverWait wait = new WebDriverWait (WebDriverRunner.getWebDriver(), Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(WebDriverRunner.getWebDriver(), Duration.ofSeconds(30));
         wait.until(ExpectedConditions.not(ExpectedConditions.attributeContains(by, attribute, currentAttributeValue)));
     }
 }
