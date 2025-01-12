@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
+import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -30,13 +31,15 @@ public class AttributeChangeTest {
         //Configuration.browserSize = "2560x1214";
         Configuration.browserSize = "1440x900";
         open(filePath);
+
+        $x("//h1").shouldHave(text("Change Image Source"));
+        Assert.assertEquals($(IMAGE).getDomAttribute("src"), SRC_ATTRIBUTE_VALUE_BEFORE);
     }
 
 
     @Test
     public void printAttributeChange() {
 
-        $x("//h1").shouldHave(text("Change Image Source"));
         System.out.println("SRC Attribute Value Before Click = " + $(IMAGE).getDomAttribute("src"));
 
         $(BUTTON).click();
@@ -49,14 +52,21 @@ public class AttributeChangeTest {
     @Test
     public void verifyAttributeChange() {
 
-        $x("//h1").shouldHave(text("Change Image Source"));
-        Assert.assertEquals($(IMAGE).getDomAttribute("src"), SRC_ATTRIBUTE_VALUE_BEFORE);
-
         $(BUTTON).click();
         waitForAttributeToChange(IMAGE, "src", SRC_ATTRIBUTE_VALUE_BEFORE);
 
         Assert.assertEquals($(IMAGE).getDomAttribute("src"), SRC_ATTRIBUTE_VALUE_AFTER);
         System.out.println("SRC Attribute Value = " + $(IMAGE).getDomAttribute("src"));
+    }
+
+
+    @Test
+    public void verifyAttributeChangeMoreSimple() {
+
+        Configuration.timeout = 10000;
+        $(BUTTON).click();
+        $(IMAGE).shouldNotHave(attribute("src", SRC_ATTRIBUTE_VALUE_BEFORE));
+        $(IMAGE).shouldHave(attribute("src", SRC_ATTRIBUTE_VALUE_AFTER));
     }
 
     public void waitForAttributeToChange(By by, String attribute, String currentAttributeValue) {
