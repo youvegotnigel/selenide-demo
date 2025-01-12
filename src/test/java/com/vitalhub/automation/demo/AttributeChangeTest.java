@@ -5,6 +5,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -17,6 +18,10 @@ public class AttributeChangeTest {
 
     private static final By BUTTON = By.tagName("button");
     private static final By IMAGE = By.id("image");
+
+    private static final String SRC_ATTRIBUTE_VALUE_BEFORE = "https://via.placeholder.com/300?text=Original";
+    private static final String SRC_ATTRIBUTE_VALUE_AFTER = "https://via.placeholder.com/300?text=Changed";
+
 
     @BeforeTest
     public void setUp() {
@@ -45,9 +50,12 @@ public class AttributeChangeTest {
     public void verifyAttributeChange() {
 
         $x("//h1").shouldHave(text("Change Image Source"));
+        Assert.assertEquals($(IMAGE).getDomAttribute("src"), SRC_ATTRIBUTE_VALUE_BEFORE);
+
         $(BUTTON).click();
         waitForAttributeToChange(IMAGE, "src", "https://via.placeholder.com/300?text=Original");
 
+        Assert.assertEquals($(IMAGE).getDomAttribute("src"), SRC_ATTRIBUTE_VALUE_AFTER);
         System.out.println("SRC Attribute Value = " + $(IMAGE).getDomAttribute("src"));
     }
 
