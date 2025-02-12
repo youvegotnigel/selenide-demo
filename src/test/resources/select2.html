@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select2 Dropdown</title>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 for="timezone">Select a Time Zone:</h1>
+        <select id="timezone" class="select2" style="width: 100%;">
+            <optgroup label="Alaskan/Hawaiian Time Zone">
+                <option value="AK">Alaska</option>
+                <option value="HI">Hawaii</option>
+            </optgroup>
+            <optgroup label="Pacific Time Zone">
+                <option value="CA">California</option>
+                <option value="NV">Nevada</option>
+            </optgroup>
+            <optgroup label="Mountain Time Zone">
+                <option value="AZ">Arizona</option>
+                <option value="CO">Colorado</option>
+            </optgroup>
+        </select>
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+</body>
+</html>
