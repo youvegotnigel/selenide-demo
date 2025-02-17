@@ -69,14 +69,14 @@ public class FileDownloadTest {
 
         open("https://the-internet.herokuapp.com/download");
 
-        File downloadedFile = $(byText("samplePDF.pdf")).download();
+        File downloadedFile = $(byText("Agile Model Question.pdf")).download();
 
         Assert.assertTrue(downloadedFile.exists());
         System.out.println("path:: " + downloadedFile.getAbsoluteFile());
-        downloadedFile.getParentFile().deleteOnExit();
 
         PDF pdf = new PDF(downloadedFile);
-        assertThat(pdf, containsText("John Belushi"));
-        assertThat(pdf, containsText("Birthday"));
+        assertThat(pdf, containsText("What is Agile methodology?"));
+
+        downloadedFile.getParentFile().deleteOnExit();
     }
 }
