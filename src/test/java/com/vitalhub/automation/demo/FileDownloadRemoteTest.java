@@ -12,12 +12,10 @@ import java.io.File;
 import java.io.IOException;
 
 import static com.codeborne.pdftest.PDF.containsText;
-import static com.codeborne.selenide.FileDownloadMode.CDP;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static com.codeborne.selenide.FileDownloadMode.FOLDER;
 
 public class FileDownloadRemoteTest {
 
@@ -27,7 +25,7 @@ public class FileDownloadRemoteTest {
 
         Configuration.remote = "http://192.168.1.8:4444";
         Configuration.browserCapabilities.setCapability("se:downloadsEnabled", true);
-        Configuration.fileDownload = FOLDER;
+        Configuration.fileDownload = FileDownloadMode.FOLDER;
         Configuration.browser = "chrome";
         open("https://the-internet.herokuapp.com/download");
     }
