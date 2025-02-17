@@ -23,7 +23,7 @@ public class FileDownloadRemoteTest {
     @BeforeMethod
     public void setUp() {
 
-        Configuration.remote = "http://192.168.1.8:4444";
+        Configuration.remote = "http://localhost:4444";
         Configuration.browserCapabilities.setCapability("se:downloadsEnabled", true);
         Configuration.fileDownload = FileDownloadMode.FOLDER;
         Configuration.browser = "chrome";
