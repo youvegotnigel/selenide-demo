@@ -2,6 +2,7 @@ version: '3'
 services:
   chrome:
     image: 'selenium/node-chrome:latest'
+    platform: linux/x86_64
     shm_size: 2gb
     depends_on:
       - selenium-hub
@@ -12,13 +13,15 @@ services:
       - SE_NODE_MAX_INSTANCES=4
       - SE_NODE_MAX_SESSIONS=4
       - SE_VNC_NO_PASSWORD=1
-      - SE_OPTS=--enable-managed-downloads true 
+      - SE_OPTS=--enable-managed-downloads true
     volumes:
-        - ./downloads:/home/seluser/Downloads  
+      - ./downloads:/home/seluser/Downloads
     ports:
       - '7900:7900'
+
   edge:
     image: 'selenium/node-edge:latest'
+    platform: linux/x86_64
     shm_size: 2gb
     depends_on:
       - selenium-hub
@@ -31,11 +34,13 @@ services:
       - SE_VNC_NO_PASSWORD=1
       - SE_OPTS=--enable-managed-downloads true
     volumes:
-        - ./downloads:/home/seluser/Downloads  
+      - ./downloads:/home/seluser/Downloads
     ports:
       - '7901:7900'
+
   firefox:
     image: 'selenium/node-firefox:latest'
+    platform: linux/x86_64
     shm_size: 2gb
     depends_on:
       - selenium-hub
@@ -48,12 +53,13 @@ services:
       - SE_VNC_NO_PASSWORD=1
       - SE_OPTS=--enable-managed-downloads true
     volumes:
-        - ./downloads:/home/seluser/Downloads  
+      - ./downloads:/home/seluser/Downloads
     ports:
       - '7902:7900'
 
   selenium-hub:
     image: 'selenium/hub:latest'
+    platform: linux/arm64
     container_name: selenium-hub
     ports:
       - '4442:4442'
