@@ -49,6 +49,8 @@ test-output/
 testdata/
 reports/
 screenshots/
+build/
+downloads/
 
 #Allure Results
 allure-results/
