@@ -24,8 +24,10 @@ public class FileDownloadRemoteTest {
     public void setUp() {
 
         Configuration.remote = "http://localhost:4444";
-        Configuration.browserCapabilities.setCapability("se:downloadsEnabled", true);
         Configuration.fileDownload = FileDownloadMode.FOLDER;
+        Configuration.downloadsFolder = System.getProperty("user.dir") + "/downloads";
+        Configuration.browserCapabilities.setCapability("se:downloadsEnabled", true);
+
         Configuration.browser = "chrome";
         open("https://the-internet.herokuapp.com/download");
     }
@@ -34,13 +36,13 @@ public class FileDownloadRemoteTest {
     @Test
     public void testFileDownloadWithHrefRemote() throws IOException {
 
-        File downloadedFile = $(byText("Agile Model Question.pdf")).download();
+        File downloadedFile = $(byText("samplePDF.pdf")).download();
 
         Assert.assertTrue(downloadedFile.exists());
         System.out.println("path:: " + downloadedFile.getAbsoluteFile());
 
         PDF pdf = new PDF(downloadedFile);
-        assertThat(pdf, containsText("What is Agile methodology?"));
+        assertThat(pdf, containsText("Why do bonds work this way?"));
         downloadedFile.getParentFile().deleteOnExit();
     }
 }
