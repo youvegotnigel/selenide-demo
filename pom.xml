@@ -15,12 +15,19 @@
     </properties>
 
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>com.codeborne</groupId>-->
+<!--            <artifactId>selenide</artifactId>-->
+<!--            <version>7.7.0</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.codeborne/selenide-grid -->
         <dependency>
             <groupId>com.codeborne</groupId>
-            <artifactId>selenide</artifactId>
-            <version>7.7.0</version>
-            <scope>test</scope>
+            <artifactId>selenide-grid</artifactId>
+            <version>7.7.2</version>
         </dependency>
+
 
         <dependency>
             <groupId>com.codeborne</groupId>
