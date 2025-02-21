@@ -35,6 +35,8 @@ public class PrintAsPDFTest {
         Configuration.fileDownload = FileDownloadMode.FOLDER;
         Configuration.downloadsFolder = FILE_DOWNLOAD_PATH;
         Configuration.reopenBrowserOnFail = false;
+        Configuration.timeout = 10 * 1000L;
+
 
         ChromeOptions options = new ChromeOptions();
         HashMap<String, Object> prefs = new HashMap<>();
@@ -63,7 +65,6 @@ public class PrintAsPDFTest {
         // setting prefs to chrome options
         options.setExperimentalOption("prefs", prefs);
 
-        // set driver with updated chrome options
         Configuration.browserCapabilities = options;
 
         open(filePath);
