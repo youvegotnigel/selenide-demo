@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <h2>Click the button to generate and open a PDF</h2>
+    <button id="button-print-cv">Open PDF</button>
+
+    <script>
+        document.getElementById('button-print-cv').addEventListener('click', () => {
+            // Load jsPDF from the imported script
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.text("Hello World", 10, 10); // Add text to the PDF
+            doc.output("dataurlnewwindow"); // Open PDF in a new tab
+        });
+    </script>
+</body>
+</html>
