@@ -37,6 +37,12 @@
             <version>1.9.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>xls-test</artifactId>
+            <version>1.7.2</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.testng</groupId>
