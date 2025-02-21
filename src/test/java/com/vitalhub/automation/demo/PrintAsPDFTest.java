@@ -73,7 +73,7 @@ public class PrintAsPDFTest {
 
 
     @Test
-    public void printPdfDocument() throws IOException {
+    public void verifyPdfDocument() throws IOException {
 
         $(PRINT_CV_BUTTON).shouldBe(clickable).shouldHave(text("Print CV"));
         File cv = $(PRINT_CV_BUTTON).download(
@@ -82,5 +82,15 @@ public class PrintAsPDFTest {
 
         PDF pdf = new PDF(cv);
         assertThat(pdf, containsText("School"));
+    }
+
+
+    @Test
+    public void printPdfDocument() {
+
+        $(PRINT_CV_BUTTON).shouldBe(clickable).shouldHave(text("Print CV"));
+        $(PRINT_CV_BUTTON).click();
+        switchTo().window(1);
+        System.out.println("Title : " + title());
     }
 }
