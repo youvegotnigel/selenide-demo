@@ -17,6 +17,5 @@ public class LoginTest {
         $("#user-name").setValue("standard_user");
         $("#password").setValue("secret_sauce").pressEnter();
         $(byTagAndText("div","Swag Labs")).shouldBe(Condition.visible);
-        $("").shouldBe(not(Condition.visible));
     }
 }
