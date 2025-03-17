@@ -106,7 +106,7 @@ public class PopulationByCountryTest {
         screenshot("my_score");
         System.out.println("High score: "+ HIGH_SCORE.text());
         System.out.println("My score: "+ MY_SCORE.text());
-        sleep(10000);
+        sleep(5000);
     }
 
 
@@ -133,7 +133,7 @@ public class PopulationByCountryTest {
 
 
     //TODO: Need to handle this a better way
-    private static Integer findPopulationByCountry(Map<String, Integer> map, String key) {
+    private static int findPopulationByCountry(Map<String, Integer> map, String key) {
 
         if (key.equals("ivory coast")) {
             return map.get("côte d'ivoire");
