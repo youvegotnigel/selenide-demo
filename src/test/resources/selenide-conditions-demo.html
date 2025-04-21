@@ -111,7 +111,17 @@
 
     <div class="card">
         <h3>appear</h3>
-        <div id="modalDialog">This modal is visible</div>
+        <button onclick="showModal()">Show Modal</button>
+        <div id="showModal" style="display: none; padding: 1rem; margin-top: 1rem; background-color: #fff3cd; border-left: 5px solid #ffc107; border-radius: 8px;">
+            This modal is visible
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>appear</h3>
+        <div id="modalDialog" style="display: none; padding: 1rem; margin-top: 1rem; background-color: #fff3cd; border-left: 5px solid #ffc107; border-radius: 8px;">
+            This modal is now visible after 5 seconds!
+        </div>
     </div>
 
     <div class="card">
@@ -202,5 +212,12 @@
 <!--      alert('Button was clicked!');-->
 <!--    });-->
 <!--</script>-->
+
+<script>
+    setTimeout(() => {
+      document.getElementById('modalDialog').style.display = 'block';
+    }, 3000);
+</script>
+
 
 </html>
