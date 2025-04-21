@@ -6,6 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byTagAndText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class SelenideConditionTest {
@@ -13,8 +14,10 @@ public class SelenideConditionTest {
     @BeforeMethod
     public void setUp() {
 
-        String filePath = "file:" + System.getProperty("user.dir") + "/src/test/resources/selenide-conditions-demo.html";
+        Configuration.timeout = 10 * 1000L;
         Configuration.browserSize = "1440x900";
+
+        String filePath = "file:" + System.getProperty("user.dir") + "/src/test/resources/selenide-conditions-demo.html";
         open(filePath);
 
         $x("//h1").shouldHave(text("\uD83C\uDF1F Selenide Conditions Demo Page"));
@@ -25,6 +28,12 @@ public class SelenideConditionTest {
         $("#loadingSpinner").shouldBe(animated);
     }
 
+    @Test
+    public void testAppear() {
+
+        $(byTagAndText("button", "Show Modal")).shouldBe(clickable).click();
+        $("#modalDialog").shouldBe(appear);
+    }
 
     @Test
     public void testClickable() {
