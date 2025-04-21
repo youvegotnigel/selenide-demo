@@ -48,11 +48,71 @@ public class SelenideConditionTest {
         switchTo().alert().accept();
     }
 
-
     @Test
     public void testDisabled() {
         $("#disabledInput").shouldBe(disabled);
     }
 
+    @Test
+    public void testDisappear() {
+        $(byTagAndText("button", "Hide Toast")).click();
+        $("#toastNotification").should(disappear);
+    }
+
+    @Test
+    public void testEditable() {
+        $("#usernameInput").shouldBe(editable);
+    }
+
+    @Test
+    public void testEmpty() {
+        $("#searchField").shouldBe(empty);
+    }
+
+    @Test
+    public void testEnabled() {
+        $("#loginButton").shouldBe(enabled);
+    }
+
+    @Test
+    public void testExist() {
+        $("#footer").should(exist);
+    }
+
+    @Test
+    public void testFocused() {
+        $("#emailInput").click();
+        $("#emailInput").shouldBe(focused);
+    }
+
+    @Test
+    public void testHidden() {
+        $("#hiddenSection").shouldBe(hidden);
+    }
+
+    @Test
+    public void testImageLoaded() {
+        $("#productImage").shouldBe(image);
+    }
+
+    @Test
+    public void testInteractable() {
+        $("#hoverTooltip").shouldBe(interactable);
+    }
+
+    @Test
+    public void testReadonly() {
+        $("#readonlyField").shouldBe(readonly);
+    }
+
+    @Test
+    public void testSelected() {
+        $("#countryDropdown option[selected]").shouldBe(selected);
+    }
+
+    @Test
+    public void testVisible() {
+        $("#mainBanner").shouldBe(visible);
+    }
 
 }
