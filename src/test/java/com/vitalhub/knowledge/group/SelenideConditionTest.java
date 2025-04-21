@@ -4,16 +4,20 @@ import com.codeborne.selenide.Configuration;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byTagAndText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class SelenideConditionTest {
 
+    private static final int MAX_TIMEOUT = 10;
+
     @BeforeMethod
     public void setUp() {
 
-        Configuration.timeout = 10 * 1000L;
+        Configuration.timeout = 3 * 1000L;
         Configuration.browserSize = "1440x900";
 
         String filePath = "file:" + System.getProperty("user.dir") + "/src/test/resources/selenide-conditions-demo.html";
@@ -31,7 +35,7 @@ public class SelenideConditionTest {
     public void testAppear() {
 
         $(byTagAndText("button", "Show Modal")).shouldBe(clickable).click();
-        $("#modalDialog").shouldBe(appear);
+        $("#modalDialog").shouldBe(appear, Duration.ofSeconds(MAX_TIMEOUT));
     }
 
     @Test
@@ -55,7 +59,7 @@ public class SelenideConditionTest {
     @Test
     public void testDisappear() {
         $(byTagAndText("button", "Hide Toast")).click();
-        $("#toastNotification").should(disappear);
+        $("#toastNotification").should(disappear, Duration.ofSeconds(MAX_TIMEOUT));
     }
 
     @Test
