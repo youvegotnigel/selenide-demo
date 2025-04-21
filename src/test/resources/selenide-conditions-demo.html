@@ -141,8 +141,12 @@
 
     <div class="card">
         <h3>disappear</h3>
-        <div id="toastNotification">This will disappear</div>
+        <button onclick="hideToast()">Hide Toast</button>
+        <div id="toastNotification" style="padding: 1rem; margin-top: 1rem; background-color: #d1e7dd; border-left: 5px solid #0f5132; border-radius: 8px;">
+            This will disappear
+        </div>
     </div>
+
 
     <div class="card">
         <h3>editable</h3>
@@ -176,7 +180,7 @@
 
     <div class="card">
         <h3>image</h3>
-        <img id="productImage" src="https://via.placeholder.com/100" alt="Product image">
+        <img id="productImage" src="https://picsum.photos/100" alt="Product image">
     </div>
 
     <div class="card">
@@ -217,6 +221,14 @@
     setTimeout(() => {
       document.getElementById('modalDialog').style.display = 'block';
     }, 3000);
+</script>
+
+<script>
+    function hideToast() {
+      setTimeout(() => {
+        document.getElementById('toastNotification').style.display = 'none';
+      }, 6000);
+    }
 </script>
 
 
