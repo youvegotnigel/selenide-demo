@@ -1,7 +1,6 @@
 package com.vitalhub.knowledge.group;
 
 import com.codeborne.selenide.Configuration;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
