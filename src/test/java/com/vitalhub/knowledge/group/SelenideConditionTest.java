@@ -36,6 +36,11 @@ public class SelenideConditionTest {
     }
 
     @Test
+    public void testChecked() {
+        $("#subscribeCheckbox").shouldBe(checked);
+    }
+
+    @Test
     public void testClickable() {
         $("#submitButton").shouldBe(clickable).click();
         String alertText = switchTo().alert().getText();
@@ -44,6 +49,10 @@ public class SelenideConditionTest {
     }
 
 
+    @Test
+    public void testDisabled() {
+        $("#disabledInput").shouldBe(disabled);
+    }
 
 
 }
