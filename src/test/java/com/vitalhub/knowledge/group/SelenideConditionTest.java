@@ -62,7 +62,7 @@ public class SelenideConditionTest {
 
     @Test
     public void testDisappear() {
-        $(byTagAndText("button", "Hide Toast")).click();
+        $(byTagAndText("button", "Hide Toast")).highlight().click();
         $("#toastNotification").should(disappear, Duration.ofSeconds(MAX_TIMEOUT));
     }
 
@@ -78,7 +78,7 @@ public class SelenideConditionTest {
 
     @Test
     public void testEnabled() {
-        $("#loginButton").shouldBe(enabled);
+        $("#loginButton").shouldBe(enabled).highlight();
     }
 
     @Test
@@ -114,7 +114,7 @@ public class SelenideConditionTest {
 
     @Test
     public void testSelected() {
-        $("#countryDropdown").getSelectedOption().shouldHave(text("United Kingdom"));
+        $("#countryDropdown").getSelectedOption().shouldHave(exactOwnTextCaseSensitive("United Kingdom"));
     }
 
     @Test
