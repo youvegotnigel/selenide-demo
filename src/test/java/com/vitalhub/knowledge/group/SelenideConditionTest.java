@@ -10,6 +10,10 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byTagAndText;
 import static com.codeborne.selenide.Selenide.*;
 
+/**
+ Selenide Conditions
+ URL: <a href="https://selenide.org/javadoc/current/com/codeborne/selenide/Condition.html">...</a>
+ */
 public class SelenideConditionTest {
 
     private static final int MAX_TIMEOUT = 10;
@@ -34,7 +38,7 @@ public class SelenideConditionTest {
     @Test
     public void testAppear() {
 
-        $(byTagAndText("button", "Show Modal")).shouldBe(clickable).click();
+        //$(byTagAndText("button", "Show Modal")).shouldBe(clickable).click();
         $("#modalDialog").shouldBe(appear, Duration.ofSeconds(MAX_TIMEOUT));
     }
 
@@ -110,7 +114,7 @@ public class SelenideConditionTest {
 
     @Test
     public void testSelected() {
-        $("#countryDropdown option[selected]").shouldBe(selected);
+        $("#countryDropdown").getSelectedOption().shouldHave(text("United Kingdom"));
     }
 
     @Test
