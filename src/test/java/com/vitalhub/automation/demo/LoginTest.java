@@ -2,7 +2,10 @@ package com.vitalhub.automation.demo;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.logging.*;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import java.util.Date;
@@ -22,15 +25,44 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class LoginTest {
 
     @Test
-    public void verifyUserCanLogin() {
+    public void verifyUserCanLoginChrome() {
+        Configuration.browser = "chrome";
         open("https://www.saucedemo.com/");
         $("#user-name").setValue("standard_user");
         $("#password").setValue("secret_sauce").pressEnter();
         $(byTagAndText("div","Swag Labs")).shouldBe(Condition.visible);
+
+        System.out.println("browser :: " + ((RemoteWebDriver) getWebDriver()).getCapabilities().getBrowserName());
+        System.out.println("browserVersion :: " + ((RemoteWebDriver) getWebDriver()).getCapabilities().getBrowserVersion());
+    }
+
+    @Test
+    public void verifyUserCanLoginEdge() {
+        Configuration.browser = "edge";
+        open("https://www.saucedemo.com/");
+        $("#user-name").setValue("standard_user");
+        $("#password").setValue("secret_sauce").pressEnter();
+        $(byTagAndText("div","Swag Labs")).shouldBe(Condition.visible);
+
+        System.out.println("browser :: " + ((RemoteWebDriver) getWebDriver()).getCapabilities().getBrowserName());
+        System.out.println("browserVersion :: " + ((RemoteWebDriver) getWebDriver()).getCapabilities().getBrowserVersion());
+    }
+
+    @Test
+    public void verifyUserCanLoginFireFox() {
+        Configuration.browser = "firefox";
+        open("https://www.saucedemo.com/");
+        $("#user-name").setValue("standard_user");
+        $("#password").setValue("secret_sauce").pressEnter();
+        $(byTagAndText("div","Swag Labs")).shouldBe(Condition.visible);
+
+        System.out.println("browser :: " + ((RemoteWebDriver) getWebDriver()).getCapabilities().getBrowserName());
+        System.out.println("browserVersion :: " + ((RemoteWebDriver) getWebDriver()).getCapabilities().getBrowserVersion());
     }
 
     @Test
     public void verifyUserCanNavigate() {
+        Configuration.browser = "chrome";
         LoggingPreferences logPrefs = new LoggingPreferences();
         logPrefs.enable(LogType.BROWSER, Level.ALL);
         logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
@@ -61,5 +93,10 @@ public class LoginTest {
                     new Date(entry.getTimestamp()), entry.getLevel(), entry.getMessage()
             );
         }
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        Selenide.closeWindow();
     }
 }
