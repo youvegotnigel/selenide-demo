@@ -31,6 +31,37 @@ public class SelenideConditionTest {
     }
 
     @Test
+    public void verifyMultipleConditionsOr() {
+        String text1 = "Selenide Conditions";
+        String text2 = "Demo Page";
+        $("h1").shouldHave(or("Either of Text", text(text1), text(text2)));
+    }
+
+    @Test
+    public void verifyMultipleConditionsAnd() {
+        String text1 = "Selenide Conditions";
+        String text2 = "Demo Page";
+        $("h1").shouldHave(and("Both of Texts", text(text1), text(text2)));
+        $("h1").shouldHave(and("Visible & Text1", visible, text(text1)));
+        $("h1").shouldHave(and("Visible & Text1", visible, partialText("Conditions")));
+        $("h1").shouldHave(and("Visible & Both of Texts", visible, text(text1), text(text2)));
+    }
+
+    @Test
+    public void verifyMultipleConditionsAllOf() {
+        String text1 = "Selenide Conditions";
+        String text2 = "Demo Page";
+        $("h1").shouldHave(allOf(partialText(text1), partialText(text2)));
+    }
+
+    @Test
+    public void verifyMultipleConditionsAnyOf() {
+        String text1 = "Selenide Conditions";
+        String text2 = "Demo Page";
+        $("h1").shouldHave(anyOf(partialText(text1), partialText(text2)));
+    }
+
+    @Test
     public void testAnimated() {
         $("#loadingSpinner").shouldBe(animated);
     }
