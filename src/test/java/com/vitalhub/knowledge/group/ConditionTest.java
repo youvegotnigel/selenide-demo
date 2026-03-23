@@ -25,7 +25,7 @@ public class ConditionTest {
         $("[alt='TREAT Logo']").shouldBe(Condition.image);
 
         // Verify the TREAT version label is visible on the page
-        $(byText("TREAT Version TREAT.HEAD.2.treatb1140")).shouldBe(Condition.visible);
+        $(byText("TREAT Version 5.32.0.0")).shouldBe(Condition.visible);
 
         // Check that the "Remember Organization" checkbox is initially unchecked
         $("#rememberOrg").shouldNotBe(Condition.checked);

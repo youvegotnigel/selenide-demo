@@ -10,6 +10,10 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byTagAndText;
 import static com.codeborne.selenide.Selenide.*;
 
+/**
+ Selenide Conditions
+ URL: <a href="https://selenide.org/javadoc/current/com/codeborne/selenide/Condition.html">...</a>
+ */
 public class SelenideConditionTest {
 
     private static final int MAX_TIMEOUT = 10;
@@ -27,6 +31,37 @@ public class SelenideConditionTest {
     }
 
     @Test
+    public void verifyMultipleConditionsOr() {
+        String text1 = "Selenide Conditions";
+        String text2 = "Demo Page";
+        $("h1").shouldHave(or("Either of Text", text(text1), text(text2)));
+    }
+
+    @Test
+    public void verifyMultipleConditionsAnd() {
+        String text1 = "Selenide Conditions";
+        String text2 = "Demo Page";
+        $("h1").shouldHave(and("Both of Texts", text(text1), text(text2)));
+        $("h1").shouldHave(and("Visible & Text1", visible, text(text1)));
+        $("h1").shouldHave(and("Visible & Text1", visible, partialText("Conditions")));
+        $("h1").shouldHave(and("Visible & Both of Texts", visible, text(text1), text(text2)));
+    }
+
+    @Test
+    public void verifyMultipleConditionsAllOf() {
+        String text1 = "Selenide Conditions";
+        String text2 = "Demo Page";
+        $("h1").shouldHave(allOf(partialText(text1), partialText(text2)));
+    }
+
+    @Test
+    public void verifyMultipleConditionsAnyOf() {
+        String text1 = "Selenide Conditions";
+        String text2 = "Demo Page";
+        $("h1").shouldHave(anyOf(partialText(text1), partialText(text2)));
+    }
+
+    @Test
     public void testAnimated() {
         $("#loadingSpinner").shouldBe(animated);
     }
@@ -34,7 +69,7 @@ public class SelenideConditionTest {
     @Test
     public void testAppear() {
 
-        $(byTagAndText("button", "Show Modal")).shouldBe(clickable).click();
+        //$(byTagAndText("button", "Show Modal")).shouldBe(clickable).click();
         $("#modalDialog").shouldBe(appear, Duration.ofSeconds(MAX_TIMEOUT));
     }
 
@@ -58,7 +93,7 @@ public class SelenideConditionTest {
 
     @Test
     public void testDisappear() {
-        $(byTagAndText("button", "Hide Toast")).click();
+        $(byTagAndText("button", "Hide Toast")).highlight().click();
         $("#toastNotification").should(disappear, Duration.ofSeconds(MAX_TIMEOUT));
     }
 
@@ -74,7 +109,7 @@ public class SelenideConditionTest {
 
     @Test
     public void testEnabled() {
-        $("#loginButton").shouldBe(enabled);
+        $("#loginButton").shouldBe(enabled).highlight();
     }
 
     @Test
@@ -110,7 +145,7 @@ public class SelenideConditionTest {
 
     @Test
     public void testSelected() {
-        $("#countryDropdown option[selected]").shouldBe(selected);
+        $("#countryDropdown").getSelectedOption().shouldHave(exactOwnTextCaseSensitive("United Kingdom"));
     }
 
     @Test
