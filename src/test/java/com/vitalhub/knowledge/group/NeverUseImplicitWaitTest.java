@@ -1,6 +1,5 @@
 package com.vitalhub.knowledge.group;
 
-import com.codeborne.selenide.WebDriverRunner;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
@@ -11,7 +10,7 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.*;
 
-public class SmallTest {
+public class NeverUseImplicitWaitTest {
 
     @Test
     void is_waits_and_returns_false() {
